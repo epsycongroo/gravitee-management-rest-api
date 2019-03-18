@@ -80,6 +80,8 @@ public interface ApiService {
 
     void deleteViewFromAPIs(String viewId);
 
+    void deleteViewFromAPIs(final List<String> viewIds);
+
     void deleteTagFromAPIs(String tagId);
 
     void checkContextPath(String newContextPath) throws TechnicalException;

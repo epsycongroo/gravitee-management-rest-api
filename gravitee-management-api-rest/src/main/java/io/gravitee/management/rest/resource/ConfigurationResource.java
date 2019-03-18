@@ -78,6 +78,12 @@ public class ConfigurationResource {
         return resourceContext.getResource(ViewsResource.class);
     }
 
+    @Path("serviceviews")
+    public ServiceViewsResource getServiceViewResource() {
+        return resourceContext.getResource(ServiceViewsResource.class);
+    }
+
+
     @Path("groups")
     public GroupsResource getGroupResource() {
         return resourceContext.getResource(GroupsResource.class);

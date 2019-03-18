@@ -82,10 +82,10 @@ public class ApisResource extends AbstractResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
-            value = "List APIs",
-            notes = "List all the APIs accessible to the current user or only public APIs for non authenticated users.")
+            value = "获取服务列表",
+            notes = "获取所有当前用户可访问的所有服务或者只有公共的服务可以被没有认证的用户访问")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "List accessible APIs for current user", response = ApiListItem.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "当前用户可以访问的服务列表", response = ApiListItem.class, responseContainer = "List"),
             @ApiResponse(code = 500, message = "Internal server error")})
     public List<ApiListItem> listApis(@BeanParam final ApisParam apisParam) {
 
@@ -140,8 +140,8 @@ public class ApisResource extends AbstractResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(
-            value = "Create an API",
-            notes = "User must have API_PUBLISHER or ADMIN role to create an API.")
+            value = "创建服务(没用到)",
+            notes = "用户必须有API_PUBLISHER或者ADMIN角色才能创建服务.")
     @ApiResponses({
             @ApiResponse(code = 201, message = "API successfully created"),
             @ApiResponse(code = 500, message = "Internal server error")})
@@ -166,10 +166,10 @@ public class ApisResource extends AbstractResource {
     @Path("import")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
-            value = "Create an API by importing an API definition",
-            notes = "Create an API by importing an existing API definition in JSON format")
+            value = "通过导入服务的定义创建服务",
+            notes = "通过导入一个已经存在的json格式的服务定义创建服务")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "API successfully created"),
+            @ApiResponse(code = 200, message = "服务成功创建"),
             @ApiResponse(code = 500, message = "Internal server error")})
     @Permissions({
             @Permission(value = RolePermission.MANAGEMENT_API, acls = RolePermissionAction.CREATE),
@@ -199,10 +199,10 @@ public class ApisResource extends AbstractResource {
     @POST
     @Path("verify")
     @Consumes(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Check if an API match the following criteria")
+    @ApiOperation(value = "检查路径是否已经存在")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "No API match the following criteria"),
-            @ApiResponse(code = 400, message = "API already exist with the following criteria")})
+            @ApiResponse(code = 200, message = "路径可用"),
+            @ApiResponse(code = 400, message = "路径已存在")})
     @Permissions({
             @Permission(value = RolePermission.MANAGEMENT_API, acls = RolePermissionAction.CREATE)
     })
@@ -227,9 +227,9 @@ public class ApisResource extends AbstractResource {
     @POST
     @Path("_search")
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Search for API using the search engine")
+    @ApiOperation(value = "使用搜索引擎查询服务")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "List accessible APIs for current user", response = ApiListItem.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "当前用户可访问的服务", response = ApiListItem.class, responseContainer = "List"),
             @ApiResponse(code = 500, message = "Internal server error")})
     public Response searchApis(
             @ApiParam(name = "q", required = true)

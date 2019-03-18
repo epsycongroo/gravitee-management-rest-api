@@ -79,8 +79,8 @@ public class ApiResource extends AbstractResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get the API definition",
-            notes = "User must have the READ permission to use this service")
+    @ApiOperation(value = "获取服务详细信息",
+            notes = "用户必须要有READ权限才能使用该服务")
     @ApiResponses({
             @ApiResponse(code = 200, message = "API definition", response = ApiEntity.class),
             @ApiResponse(code = 500, message = "Internal server error")})
@@ -160,10 +160,10 @@ public class ApiResource extends AbstractResource {
 
     @POST
     @ApiOperation(
-            value = "Manage the API's lifecycle",
-            notes = "User must have the MANAGE_LIFECYCLE permission to use this service")
+            value = "开闭服务",
+            notes = "用户必须要有MANAGE_LIFECYCLE权限才能使用这个服务")
     @ApiResponses({
-            @ApiResponse(code = 204, message = "API's picture"),
+            @ApiResponse(code = 204, message = "成功"),
             @ApiResponse(code = 500, message = "Internal server error")})
     @Permissions({
             @Permission(value = RolePermission.API_DEFINITION, acls = RolePermissionAction.UPDATE)
@@ -207,10 +207,10 @@ public class ApiResource extends AbstractResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
-            value = "Update the API",
-            notes = "User must have the MANAGE_APPLICATION permission to use this service")
+            value = "修改服务",
+            notes = "用户必须要有MANAGE_APPLICATION权限")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "API successfully updated", response = ApiEntity.class),
+            @ApiResponse(code = 200, message = "修改成功", response = ApiEntity.class),
             @ApiResponse(code = 500, message = "Internal server error")})
     @Permissions({
             @Permission(value = RolePermission.API_DEFINITION, acls = RolePermissionAction.UPDATE),
@@ -269,10 +269,10 @@ public class ApiResource extends AbstractResource {
 
     @DELETE
     @ApiOperation(
-            value = "Delete the API",
-            notes = "User must have the DELETE permission to use this service")
+            value = "删除服务",
+            notes = "用户必须要有DELETE权限, 必须先要关闭plan和关闭服务")
     @ApiResponses({
-            @ApiResponse(code = 204, message = "API successfully deleted"),
+            @ApiResponse(code = 204, message = "删除成功"),
             @ApiResponse(code = 500, message = "Internal server error")})
     @Permissions({
             @Permission(value = RolePermission.API_DEFINITION, acls = RolePermissionAction.DELETE)
@@ -287,8 +287,8 @@ public class ApiResource extends AbstractResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("deploy")
     @ApiOperation(
-            value = "Deploy API to gateway instances",
-            notes = "User must have the MANAGE_LIFECYCLE permission to use this service")
+            value = "部署服务到网关运行实例",
+            notes = "用户必须要有 MANAGE_LIFECYCLE 权限")
     @ApiResponses({
             @ApiResponse(code = 200, message = "API successfully deployed", response = ApiEntity.class),
             @ApiResponse(code = 500, message = "Internal server error")})
@@ -312,7 +312,7 @@ public class ApiResource extends AbstractResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("state")
     @ApiOperation(
-            value = "Get the state of the API",
+            value = "获取服务状态(是否与网关实例同步)",
             notes = "User must have the MANAGE_LIFECYCLE permission to use this service")
     @ApiResponses({
             @ApiResponse(code = 200, message = "API's state", response = io.gravitee.management.rest.model.ApiEntity.class),
@@ -335,8 +335,8 @@ public class ApiResource extends AbstractResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("rollback")
     @ApiOperation(
-            value = "Rollback API to a previous version",
-            notes = "User must have the MANAGE_LIFECYCLE permission to use this service")
+            value = "回滚服务到之前版本",
+            notes = "用户必须要有MANAGE_LIFECYCLE权限")
     @ApiResponses({
             @ApiResponse(code = 200, message = "API successfully rollbacked", response = ApiEntity.class),
             @ApiResponse(code = 500, message = "Internal server error")})
